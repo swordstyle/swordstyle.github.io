@@ -224,59 +224,60 @@
         let currentLayer = tileLayers.dark;
         currentLayer.addTo(map);
 
-        // Live stream locations with YouTube embed links
+        // Live stream locations with YouTube embed links and custom icons
         const locations = [
-            { coords: [34.2438963,-116.9114215], name: "Big Bear Bald Eagle Live Nest - Cam 1", videoId: "B4-L2nfGcuE", description: "Big Bear Valley in the San Bernardino Mountains of Southern California" },            { coords: [35.7143, -83.5102], name: "Gatlinburg TN", videoId: "6Jth3YIN7ko", description: "Beautiful mountain town in Tennessee" },
-            { coords: [36.1627, -86.7816], name: "Nashville TN - Downtown", videoId: "Gw0FXKfyBno", description: "Music City's bustling downtown" },
-            { coords: [38.3269, -75.0927], name: "Ocean City MD - Inlet Beach", videoId: "pK_06XTUz3g", description: "Popular beach destination on the Atlantic" },
-            { coords: [30.3935, -86.4958], name: "Destin FL - Pelican Beach", videoId: "sS4GzzSOY8Q", description: "Beautiful white sand beaches of Florida" },
-            { coords: [28.1761, -80.5897], name: "Satellite Beach FL", videoId: "D4B4MdxLkQo", description: "Coastal Florida beach community" },
-            { coords: [29.9584, -90.0644], name: "New Orleans LA", videoId: "qHW8srS0ylo", description: "The vibrant heart of Louisiana" },
-            { coords: [34.0522, -118.2437], name: "Los Angeles CA", videoId: "PnpcdnZhztI", description: "City of Angels live stream" },
-            { coords: [19.4069, -155.2834], name: "Kilauea HI", videoId: "sTXKIz2NGvg", description: "Active volcano in Hawaii" },
-            { coords: [33.8621, -118.3998], name: "Hermosa Beach CA", videoId: "yJgfAV8lXyI", description: "Famous California beach destination" },
-            { coords: [38.0194342,-84.5215242], name: "Lexington, KY Train Crossing", videoId: "Y3pgoDyuW38", description: "Berkshire Trains Live Stream at 83.2 Rosemont crossing in Lexington KY" },
-            { coords: [28.5652787,-81.58618469999999], name: "Winter Garden, FL", videoId: "mvNnXQKN3ZU", description: "Winter Garden, FL" },
-            { coords: [29.3012309,-94.7950151], name: "MURDOCHS CAM: Live from the Galveston Seawall", videoId: "aZ0tx7eeLYU", description: "The Galveston.com Murdoch" },
-            { coords: [39.9934039,-75.1179823], name: "Kensington Philadelphia. Cam 7", videoId: "9z-qXarfpmA", description: "Kensington Philadelphia. " },
-            { coords: [24.5465114,-81.7975065], name: "Key West Southernmost Point Live Cam", videoId: "r6H2RnNDC3k", description: "Key West southernmost poi" },
-            { coords: [-24.2888714,15.2604813], name: "Namibia: Live stream in the Namib Desert", videoId: "ydYDqZQpim8", description: "Live feed, from a waterho" },
-            { coords: [26.0110262,-80.1157583], name: "Live Beach Cam Hollywood Beach Broadwalk, Florida", videoId: "cmkAbDUEoyA", description: "Live views of the Hollywo" },
-            { coords: [26.3184123,-80.09976569999999], name: "LIVE Deerfield Beach - Beach Camera", videoId: "-HAi_5IIAYg", description: "Welcome to the Deerfield " },
-            { coords: [26.3184123,-80.09976569999999], name: "Underwater Camera - Deerfield Beach, Florida", videoId: "V7c7pBbH150", description: "Welcome to the Underwater" },
-            { coords: [26.2305913,-80.12510209999999], name: "Pompano Beach Underwater Pier Cam", videoId: "hFr5w9KLEA4", description: "WELCOME! Dive into the de" },
-            { coords: [18.3304513,-64.792952], name: "Beach Bar St. John Webcam", videoId: "2wqpy036z24", description: "The World Famous Beach Ba" },
-            { coords: [40.9432955,-72.1936235], name: "Hamptons.com - LIVE! Coopers Beach, Southampton Village, New York - Rated #2 Beach In the Country !", videoId: "4cDBr4IZznY", description: "_____ Main Beach Cam, Eas" },
-            { coords: [41.7281482,-86.9040495], name: "Access LaPorte County BeachCam", videoId: "Y2VkN45kj_0", description: "A live look at the Washin" },
-            { coords: [40.8377066,-72.4965823], name: "Hamptons.com - LIVE SURF CAM! Ponquogue Beach Pavilion, Hampton Bays, New York", videoId: "DCG_-9UG3cI", description: "___---Hamptons.com - LIVE" },
-            { coords: [12.16957,-68.99002], name: "LionsDive Beach Resort | Mambo Beach | Curaçao 🌴💦 PTZ 4K LIVE CAM", videoId: "loHbMM9JfCs", description: "Your Next Luxury Vacation" },
-            { coords: [26.1296352,-80.1035553], name: "LIVE - Fort Lauderdale Beach", videoId: "8vTmL-oD3Lo", description: "One of PTZtv's two Fort L" },
-            { coords: [30.383819,-86.49923179999999], name: "Inlet Reef Beachcam Destin, FL", videoId: "XGfKO7hW274", description: "Inlet Reef Beachcam Desti" },
-            { coords: [35.7595731,-79.01929969999999], name: "Shark Cam powered by EXPLORE.org", videoId: "og8bbxl0iW8", description: "What marine life is found" },
-            { coords: [30.2932415,-81.38929499999999], name: "Live Cam From The Best Western In Jacksonville Beach, Fl.", videoId: "bZ4uxyLqV-E", description: "NOTE: Times shown may not" },
-            { coords: [26.0582958,-80.1110075], name: "Dania Beach Pier Cam", videoId: "o1eTLR7Degs", description: "Dania Beach Pier Cam" },
-            { coords: [35.5584932,-75.4665158], name: "Outer Banks, NC. Blue Beach", videoId: "ZGXUi-5aJXM", description: "Outer Banks, NC. Blue Bea" },
-            { coords: [25.7745435,-80.1708802], name: "🔴 LIVE Port Miami Cruise Ship Departures and Arrivals | ICON of the Seas", videoId: "os3QxtU_ZrQ", description: "iconoftheseas #cruiseship" },
-            { coords: [25.7338942,-80.1652648], name: "Miami Acquarium", videoId: "7i8ARjIeM2k", description: "Miami Acquarium" },
-            { coords: [25.7923496,-80.28230590000001], name: "LIVE Miami Airport -- Watch runway 9/27 with tower radio traffic!", videoId: "OXeFcz3lEz4", description: "Live streaming video from" },
-            { coords: [26.1109199,-80.11226649999999], name: "New River Live Feed", videoId: "4YFHDjig1hc", description: "Thank you for enjoying ou" },
-            { coords: [25.7745435,-80.1708802], name: "🔴 LIVE Port Miami Cruise Ship Terminals", videoId: "YvnIEm36tN8", description: "See live cruise ship arri" },
-            { coords: [24.882662,-80.690772], name: "Tarpon Feeding Dock at Robbie's Marina in Islamorada - LIVE", videoId: "zfSst64NFcE", description: "Tarpon Feeding Dock at Ro" },
-            { coords: [24.5550593,-81.7799871], name: "🔴 LIVE Cruise Port Key West", videoId: "8Rw-tZTeBjU", description: "Watch the cruise ships, N" },
-            { coords: [18.0400527,-63.1208828], name: "World famous Plane Beach ✈️ -  Maho Beach Sint Maarten SXM", videoId: "LtzkkAeW_Qg", description: "World famous Plane Beach " },
-            { coords: [53.3449379,-6.267473100000001], name: "EarthCam Live: Dublin, Ireland", videoId: "u4UZ4UvZXrg", description: "EarthCam is taking viewer" },
-            { coords: [28.0186323,-82.1128641], name: "Plant City, Florida, USA |  - Virtual Railfan  LIVE !", videoId: "hMDC4FWvqdA", description: "Plant City, Florida, USA " },
-            { coords: [29.5446753,-95.0910413], name: "City of Nassau bay", videoId: "WspqsK3bXAY", description: "City of Nassau bay" },
-            { coords: [45.0229456,-85.76097229999999], name: "The Cove Leland Fishtown Live", videoId: "s7sY1waeOf4", description: "The Cove Leland Fishtown " },
-            { coords: [12.16957,-68.99002], name: "The Royal Sea Aquarium Resort | Curacao 🌴☀️ LIVE CAM 4K", videoId: "IAkRcsPDO8w", description: "Live camera of The Royal " },
-            { coords: [11.9846527,-68.6442344], name: "Klein Curaçao | Mermaid Boat Trips 🌴💦☀️ LIVE CAM", videoId: "0ImA9IcyQwA", description: "paradise" }
+            { coords: [34.2438963,-116.9114215], name: "Big Bear Bald Eagle Live Nest - Cam 1", videoId: "B4-L2nfGcuE", description: "Big Bear Valley in the San Bernardino Mountains of Southern California", icon: "🦅" },
+            { coords: [35.7143, -83.5102], name: "Gatlinburg TN", videoId: "6Jth3YIN7ko", description: "Beautiful mountain town in Tennessee", icon: "🏔️" },
+            { coords: [36.1627, -86.7816], name: "Nashville TN - Downtown", videoId: "Gw0FXKfyBno", description: "Music City's bustling downtown", icon: "🎸" },
+            { coords: [38.3269, -75.0927], name: "Ocean City MD - Inlet Beach", videoId: "pK_06XTUz3g", description: "Popular beach destination on the Atlantic", icon: "🏖️" },
+            { coords: [30.3935, -86.4958], name: "Destin FL - Pelican Beach", videoId: "sS4GzzSOY8Q", description: "Beautiful white sand beaches of Florida", icon: "🏖️" },
+            { coords: [28.1761, -80.5897], name: "Satellite Beach FL", videoId: "D4B4MdxLkQo", description: "Coastal Florida beach community", icon: "🏖️" },
+            { coords: [29.9584, -90.0644], name: "New Orleans LA", videoId: "qHW8srS0ylo", description: "The vibrant heart of Louisiana", icon: "🎭" },
+            { coords: [34.0522, -118.2437], name: "Los Angeles CA", videoId: "PnpcdnZhztI", description: "City of Angels live stream", icon: "🌆" },
+            { coords: [19.4069, -155.2834], name: "Kilauea HI", videoId: "sTXKIz2NGvg", description: "Active volcano in Hawaii", icon: "🌋" },
+            { coords: [33.8621, -118.3998], name: "Hermosa Beach CA", videoId: "yJgfAV8lXyI", description: "Famous California beach destination", icon: "🏄" },
+            { coords: [38.0194342,-84.5215242], name: "Lexington, KY Train Crossing", videoId: "Y3pgoDyuW38", description: "Berkshire Trains Live Stream at 83.2 Rosemont crossing in Lexington KY", icon: "🚂" },
+            { coords: [28.5652787,-81.58618469999999], name: "Winter Garden, FL", videoId: "mvNnXQKN3ZU", description: "Winter Garden, FL", icon: "🌻" },
+            { coords: [29.3012309,-94.7950151], name: "MURDOCHS CAM: Live from the Galveston Seawall", videoId: "aZ0tx7eeLYU", description: "The Galveston.com Murdoch", icon: "🌊" },
+            { coords: [39.9934039,-75.1179823], name: "Kensington Philadelphia. Cam 7", videoId: "9z-qXarfpmA", description: "Kensington Philadelphia. ", icon: "🏙️" },
+            { coords: [24.5465114,-81.7975065], name: "Key West Southernmost Point Live Cam", videoId: "r6H2RnNDC3k", description: "Key West southernmost poi", icon: "🗽" },
+            { coords: [-24.2888714,15.2604813], name: "Namibia: Live stream in the Namib Desert", videoId: "ydYDqZQpim8", description: "Live feed, from a waterho", icon: "🏜️" },
+            { coords: [26.0110262,-80.1157583], name: "Live Beach Cam Hollywood Beach Broadwalk, Florida", videoId: "cmkAbDUEoyA", description: "Live views of the Hollywo", icon: "🏖️" },
+            { coords: [26.3184123,-80.09976569999999], name: "LIVE Deerfield Beach - Beach Camera", videoId: "-HAi_5IIAYg", description: "Welcome to the Deerfield ", icon: "🏖️" },
+            { coords: [26.3184123,-80.09976569999999], name: "Underwater Camera - Deerfield Beach, Florida", videoId: "V7c7pBbH150", description: "Welcome to the Underwater", icon: "🐠" },
+            { coords: [26.2305913,-80.12510209999999], name: "Pompano Beach Underwater Pier Cam", videoId: "hFr5w9KLEA4", description: "WELCOME! Dive into the de", icon: "🐙" },
+            { coords: [18.3304513,-64.792952], name: "Beach Bar St. John Webcam", videoId: "2wqpy036z24", description: "The World Famous Beach Ba", icon: "🍹" },
+            { coords: [40.9432955,-72.1936235], name: "Hamptons.com - LIVE! Coopers Beach, Southampton Village, New York - Rated #2 Beach In the Country !", videoId: "4cDBr4IZznY", description: "_____ Main Beach Cam, Eas", icon: "🏖️" },
+            { coords: [41.7281482,-86.9040495], name: "Access LaPorte County BeachCam", videoId: "Y2VkN45kj_0", description: "A live look at the Washin", icon: "🏖️" },
+            { coords: [40.8377066,-72.4965823], name: "Hamptons.com - LIVE SURF CAM! Ponquogue Beach Pavilion, Hampton Bays, New York", videoId: "DCG_-9UG3cI", description: "___---Hamptons.com - LIVE", icon: "🏄" },
+            { coords: [12.16957,-68.99002], name: "LionsDive Beach Resort | Mambo Beach | Curaçao 🌴💦 PTZ 4K LIVE CAM", videoId: "loHbMM9JfCs", description: "Your Next Luxury Vacation", icon: "🏝️" },
+            { coords: [26.1296352,-80.1035553], name: "LIVE - Fort Lauderdale Beach", videoId: "8vTmL-oD3Lo", description: "One of PTZtv's two Fort L", icon: "🏖️" },
+            { coords: [30.383819,-86.49923179999999], name: "Inlet Reef Beachcam Destin, FL", videoId: "XGfKO7hW274", description: "Inlet Reef Beachcam Desti", icon: "🏖️" },
+            { coords: [35.7595731,-79.01929969999999], name: "Shark Cam powered by EXPLORE.org", videoId: "og8bbxl0iW8", description: "What marine life is found", icon: "🦈" },
+            { coords: [30.2932415,-81.38929499999999], name: "Live Cam From The Best Western In Jacksonville Beach, Fl.", videoId: "bZ4uxyLqV-E", description: "NOTE: Times shown may not", icon: "🏖️" },
+            { coords: [26.0582958,-80.1110075], name: "Dania Beach Pier Cam", videoId: "o1eTLR7Degs", description: "Dania Beach Pier Cam", icon: "🎣" },
+            { coords: [35.5584932,-75.4665158], name: "Outer Banks, NC. Blue Beach", videoId: "ZGXUi-5aJXM", description: "Outer Banks, NC. Blue Bea", icon: "🏖️" },
+            { coords: [25.7745435,-80.1708802], name: "🔴 LIVE Port Miami Cruise Ship Departures and Arrivals | ICON of the Seas", videoId: "os3QxtU_ZrQ", description: "iconoftheseas #cruiseship", icon: "🚢" },
+            { coords: [25.7338942,-80.1652648], name: "Miami Acquarium", videoId: "7i8ARjIeM2k", description: "Miami Acquarium", icon: "🐬" },
+            { coords: [25.7923496,-80.28230590000001], name: "LIVE Miami Airport -- Watch runway 9/27 with tower radio traffic!", videoId: "OXeFcz3lEz4", description: "Live streaming video from", icon: "✈️" },
+            { coords: [26.1109199,-80.11226649999999], name: "New River Live Feed", videoId: "4YFHDjig1hc", description: "Thank you for enjoying ou", icon: "🏞️" },
+            { coords: [25.7745435,-80.1708802], name: "🔴 LIVE Port Miami Cruise Ship Terminals", videoId: "YvnIEm36tN8", description: "See live cruise ship arri", icon: "🚢" },
+            { coords: [24.882662,-80.690772], name: "Tarpon Feeding Dock at Robbie's Marina in Islamorada - LIVE", videoId: "zfSst64NFcE", description: "Tarpon Feeding Dock at Ro", icon: "🐟" },
+            { coords: [24.5550593,-81.7799871], name: "🔴 LIVE Cruise Port Key West", videoId: "8Rw-tZTeBjU", description: "Watch the cruise ships, N", icon: "🚢" },
+            { coords: [18.0400527,-63.1208828], name: "World famous Plane Beach ✈️ -  Maho Beach Sint Maarten SXM", videoId: "LtzkkAeW_Qg", description: "World famous Plane Beach ", icon: "✈️" },
+            { coords: [53.3449379,-6.267473100000001], name: "EarthCam Live: Dublin, Ireland", videoId: "u4UZ4UvZXrg", description: "EarthCam is taking viewer", icon: "🍀" },
+            { coords: [28.0186323,-82.1128641], name: "Plant City, Florida, USA |  - Virtual Railfan  LIVE !", videoId: "hMDC4FWvqdA", description: "Plant City, Florida, USA ", icon: "🚂" },
+            { coords: [29.5446753,-95.0910413], name: "City of Nassau bay", videoId: "WspqsK3bXAY", description: "City of Nassau bay", icon: "🌊" },
+            { coords: [45.0229456,-85.76097229999999], name: "The Cove Leland Fishtown Live", videoId: "s7sY1waeOf4", description: "The Cove Leland Fishtown ", icon: "🎣" },
+            { coords: [12.16957,-68.99002], name: "The Royal Sea Aquarium Resort | Curacao 🌴☀️ LIVE CAM 4K", videoId: "IAkRcsPDO8w", description: "Live camera of The Royal ", icon: "🏝️" },
+            { coords: [11.9846527,-68.6442344], name: "Klein Curaçao | Mermaid Boat Trips 🌴💦☀️ LIVE CAM", videoId: "0ImA9IcyQwA", description: "paradise", icon: "🏝️" }
         ];
 
-        // Add markers to map with video functionality
+        // Add markers to map with video functionality and custom icons
         locations.forEach((location, index) => {
             const customIcon = L.divIcon({
                 className: 'custom-marker',
-                html: `✳️`,
+                html: `${location.icon || '✳️'}`,
                 iconSize: [25, 25],
                 iconAnchor: [12, 12]
             });
@@ -315,7 +316,8 @@
                     location_name: location.name,
                     coordinates: location.coords,
                     video_id: location.videoId,
-                    description: location.description
+                    description: location.description,
+                    icon: location.icon
                 });
             });
 
@@ -324,7 +326,8 @@
                 posthog.capture('video_popup_opened', {
                     location_name: location.name,
                     coordinates: location.coords,
-                    video_id: location.videoId
+                    video_id: location.videoId,
+                    icon: location.icon
                 });
             });
         });
