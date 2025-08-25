@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dark Mode Map</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.css" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #1a1a1a;
+            color: #ffffff;
+            overflow: hidden;
+        }
+
+        #map {
+            height: 100vh;
+            width: 100vw;
+            background-color: #2d3748;
+        }
+
+        .map-controls {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            background: rgba(26, 26, 26, 0.9);
+            backdrop-filter: blur(10px);
+            border: 1px solid #4a5568;
+            border-radius: 12px;
+            padding: 15px;
+            min-width: 200px;
+        }
+
+        .control-group {
+            margin-bottom: 15px;
+        }
+
+        .control-group:last-child {
+            margin-bottom: 0;
+        }
+
+        .control-label {
+            display: block;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #e2e8f0;
+        }
+
+        .style-selector {
+            width: 100%;
+            padding: 8px 12px;
+            background-color: #2d3748;
+            color: #ffffff;
+            border: 1px solid #4a5568;
+            border-radius: 6px;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        .style-selector:focus {
+            outline: none;
+            border-color: #63b3ed;
+        }
+
+        .coordinates {
+            font-size: 12px;
+            color: #a0aec0;
+            font-family: 'Courier New', monospace;
+        }
+
+        /* Dark mode popup styles */
+        .leaflet-popup-content-wrapper {
+            background: #2d3748 !important;
+            color: #ffffff !important;
+            border-radius: 8px !important;
+            border: 1px solid #4a5568 !important;
+        }
+
+        .leaflet-popup-content {
+            color: #ffffff !important;
+        }
+
+        .leaflet-popup-tip {
+            background: #2d3748 !important;
+            border: 1px solid #4a5568 !important;
+        }
+
+        /* Dark mode zoom control */
+        .leaflet-control-zoom a {
+            background-color: #2d3748 !important;
+            color: #ffffff !important;
+            border: 1px solid #4a5568 !important;
+        }
+
+        .leaflet-control-zoom a:hover {
+            background-color: #4a5568 !important;
+        }
+
+        /* Loading indicator */
+        .loading {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 999;
+            color: #e2e8f0;
+            font-size: 18px;
+        }
+
+        .spinner {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid #4a5568;
+            border-radius: 50%;
+            border-top-color: #63b3ed;
+            animation: spin 1s ease-in-out infinite;
+            margin-right: 10px;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Video popup specific styles */
+        .video-popup .leaflet-popup-content-wrapper {
+            background: #1a202c !important;
+            border: 1px solid #4a5568 !important;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5) !important;
+        }
+
+        .video-popup .leaflet-popup-tip {
+            background: #1a202c !important;
+        }
+
+        /* Enhanced marker styles for video cameras */
+        .custom-marker {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            border: 2px solid #ffffff;
+            border-radius: 50%;
+            width: 25px;
+            height: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 14px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+
+        .custom-marker:hover {
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body>
+    <div id="loading" class="loading">
+        <div class="spinner"></div>
+        Loading map...
+    </div>
+
+    <div id="map"></div>
+
+    <div class="map-controls">
+        <div class="control-group">
+            <label class="control-label">Map Style</label>
+            <select class="style-selector" id="styleSelector">
+                <option value="dark">Dark Theme</option>
+                <option value="satellite">Satellite</option>
+            </select>
+        </div>
+        <div class="control-group">
+            <label class="control-label">Coordinates</label>
+            <div class="coordinates" id="coordinates">
+                Lat: 39.8283, Lng: -98.5795
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+    <script>
+        // Initialize map centered on USA
+        const map = L.map('map', {
+            center: [39.8283, -98.5795],
+            zoom: 4,
+            zoomControl: true,
+            attributionControl: true
+        });
+
+        // Dark tile layer options
+        const tileLayers = {
+            dark: L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+                subdomains: 'abcd',
+                maxZoom: 19
+            }),
+            satellite: L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+                attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
+            })
+        };
+
+        // Set initial tile layer
+        let currentLayer = tileLayers.dark;
+        currentLayer.addTo(map);
+
+        // Live stream locations with YouTube embed links
+        const locations = [
+            { coords: [34.2438963,-116.9114215], name: "Big Bear Bald Eagle Live Nest - Cam 1", videoId: "B4-L2nfGcuE", description: "Big Bear Valley in the San Bernardino Mountains of Southern California" },            { coords: [35.7143, -83.5102], name: "Gatlinburg TN", videoId: "6Jth3YIN7ko", description: "Beautiful mountain town in Tennessee" },
+            { coords: [36.1627, -86.7816], name: "Nashville TN - Downtown", videoId: "Gw0FXKfyBno", description: "Music City's bustling downtown" },
+            { coords: [38.3269, -75.0927], name: "Ocean City MD - Inlet Beach", videoId: "pK_06XTUz3g", description: "Popular beach destination on the Atlantic" },
+            { coords: [30.3935, -86.4958], name: "Destin FL - Pelican Beach", videoId: "sS4GzzSOY8Q", description: "Beautiful white sand beaches of Florida" },
+            { coords: [28.1761, -80.5897], name: "Satellite Beach FL", videoId: "D4B4MdxLkQo", description: "Coastal Florida beach community" },
+            { coords: [29.9584, -90.0644], name: "New Orleans LA", videoId: "qHW8srS0ylo", description: "The vibrant heart of Louisiana" },
+            { coords: [34.0522, -118.2437], name: "Los Angeles CA", videoId: "PnpcdnZhztI", description: "City of Angels live stream" },
+            { coords: [19.4069, -155.2834], name: "Kilauea HI", videoId: "sTXKIz2NGvg", description: "Active volcano in Hawaii" },
+            { coords: [33.8621, -118.3998], name: "Hermosa Beach CA", videoId: "yJgfAV8lXyI", description: "Famous California beach destination" },
+            { coords: [38.0194342,-84.5215242], name: "Lexington, KY Train Crossing", videoId: "Y3pgoDyuW38", description: "Berkshire Trains Live Stream at 83.2 Rosemont crossing in Lexington KY" },
+            { coords: [11.9846527,-68.6442344], name: "Klein Curaçao | Mermaid Boat Trips 🌴💦☀️ LIVE CAM", videoId: "0ImA9IcyQwA", description: "paradise" }
+        ];
+
+        // Add markers to map with video functionality
+        locations.forEach((location, index) => {
+            const customIcon = L.divIcon({
+                className: 'custom-marker',
+                html: `✳️`,
+                iconSize: [25, 25],
+                iconAnchor: [12, 12]
+            });
+
+            const marker = L.marker(location.coords, { icon: customIcon }).addTo(map);
+            
+            const popupContent = `
+                <div style="color: #ffffff; background: #2d3748; padding: 15px; border-radius: 8px; width: 320px;">
+                    <h3 style="margin: 0 0 10px 0; color: #63b3ed; font-size: 16px;">${location.name}</h3>
+                    <p style="margin: 0 0 15px 0; font-size: 13px; color: #e2e8f0;">${location.description}</p>
+                    <div style="position: relative; width: 100%; height: 180px; margin-bottom: 10px;">
+                        <iframe 
+                            width="100%" 
+                            height="100%" 
+                            src="https://www.youtube.com/embed/${location.videoId}?autoplay=1&mute=1&controls=1" 
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen
+                            style="border-radius: 6px;">
+                        </iframe>
+                    </div>
+                    <div style="font-size: 11px; color: #a0aec0;">
+                        📍 ${location.coords[0].toFixed(4)}, ${location.coords[1].toFixed(4)}
+                    </div>
+                </div>
+            `;
+            
+            marker.bindPopup(popupContent, {
+                maxWidth: 350,
+                className: 'video-popup'
+            });
+        });
+
+        // Update coordinates display
+        function updateCoordinates(lat, lng) {
+            document.getElementById('coordinates').textContent = 
+                `Lat: ${lat.toFixed(4)}, Lng: ${lng.toFixed(4)}`;
+        }
+
+        // Mouse move event to update coordinates
+        map.on('mousemove', function(e) {
+            updateCoordinates(e.latlng.lat, e.latlng.lng);
+        });
+
+        // Style selector functionality
+        document.getElementById('styleSelector').addEventListener('change', function(e) {
+            const selectedStyle = e.target.value;
+            
+            // Remove current layer
+            map.removeLayer(currentLayer);
+            
+            // Add new layer
+            currentLayer = tileLayers[selectedStyle];
+            currentLayer.addTo(map);
+        });
+
+        // Hide loading indicator once map is loaded
+        map.whenReady(function() {
+            document.getElementById('loading').style.display = 'none';
+        });
+
+        // Smooth zoom controls
+        map.on('zoomstart', function() {
+            map.getContainer().style.cursor = 'wait';
+        });
+
+        map.on('zoomend', function() {
+            map.getContainer().style.cursor = '';
+        });
+    </script>
+</body>
+</html>
