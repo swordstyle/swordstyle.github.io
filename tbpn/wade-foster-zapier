@@ -1,0 +1,87 @@
+# Building Zapier: A Conversation with CEO Wade Foster
+
+*Wade Foster, co-founder and CEO of Zapier, discusses the company's path to profitability, AI integration, and building a sustainable business without massive capital raises.*
+
+---
+
+**Let's start with the basics. How do you actually pronounce your company name?**
+
+It's Zappier, like "happier" but with a Z. It's funny—we actually called it Snappier first, but we had to switch to Zapier because of copyright issues. Of course, it was one Snappier with one P, so we just doubled down on the mistake and went with Zapier with one P as well.
+
+**You became profitable in 2014, just two years after founding. That was unusual for Silicon Valley at the time. What drove that decision?**
+
+When we raised our seed round out of Y Combinator, we said, "Hey, we want this to be the last money we ever get." I looked at every expense on our P&L and approved everything. I was vigilant about not spending money if we didn't have to. In that 2010s decade, we were looked at as crazy. Now it's very trendy—I heard this term "seed strapping" popularized about six months ago, where it's one round and then don't raise more. I was like, "Oh, that's what we did."
+
+**Where did that philosophy come from? The Silicon Valley meme at the time was much more about blitzscaling.**
+
+We had two examples that shaped us. All three founders worked at Veterans United in Central Missouri—a company owned by two brothers, 50/50, who never raised a dime. I was employee 500, and when I left 10 months later, there were a thousand employees there. This company was scaling like crazy with mortgages during the financial crisis. So we saw that you could clearly build a successful company this way.
+
+Then one of our favorite products, Mailchimp, was one of our earliest and most successful partners—entirely bootstrapped. Coming from the Midwest, we just didn't know anything about this Silicon Valley world for how to build companies. It made us skeptical. I remember one venture capitalist said, "No important company has ever been built this way." When you make grandiose statements like that and you have counterfactuals, you start questioning what other advice they're giving that might be wrong.
+
+**How did you decide when money wasn't the bottleneck for growth?**
+
+The exercise we went through was to look at our growth and really understand: where is there a bottleneck in your business? What is the long pole in the tent holding you back from achieving your goals? Every time we did that exercise, we came back with an answer that wasn't "more money." It was "management horsepower" or "we need this particular feature to launch, which we can go build."
+
+I see folks making mistakes when they get caught up in the noise—the logic becomes "Well, so-and-so raised a lot of money" or "What if this happens?" These aren't grounded in factual truths of reality. What you do know is: this is where my company is, this is what it'll take to get there, and if my bottleneck is money, great, go get money. But if the bottleneck is something else, it's incumbent upon you as CEO to spend time on the most important thing.
+
+**What made Zapier defensible in those early days?**
+
+It definitely was an odd product. People would comment, "How exactly did you come up with this idea?" What made it so defensible was that integrations and middleware are just inherently sloggy. There's not a lot of secret hacks to do that. Now with AI, it's getting easier, but it's still not easy. You still just have to chunk away at this stuff.
+
+I would put us in the same category as Plaid and others where it's not actually easy for a big company to just decide, "Oh, we are going to compete in this." Most of them just don't have the fortitude to keep chipping away at a bunch of really boring engineering work. They're hiring engineers who want to work on sexier things versus chip away at integration code all day every day.
+
+**How has AI changed Zapier's positioning?**
+
+We're seeing value in two main areas. First, AI copilots help people build new types of workflows. These no-code workflow editors inherently have a fair amount of configuration involved. We always invested a lot in design to make that experience good, but it's still a lot to configure. Copilot gets closer to how humans think about this stuff. Most humans are not great systems thinkers—they don't break tasks down bit by bit. So copilot can attract folks into the market who maybe struggled in the past.
+
+But the second area is more interesting: AI doesn't fundamentally change the use cases, but it opens up new ones. We launched Zapier Agents, which is a purely agentic experience, and we have our classic workflow editor where you can now inject AI steps. Both have been successful, but the latter has been far more successful.
+
+**Why have workflows with AI steps been more successful than pure agents?**
+
+Agents inherently don't have the reliability yet to solve sophisticated use cases. If you're asking an agent to do anything complex—call it 10 or 20 tasks in a row—and the error rate is 10% every time, by the time it rips through those tasks, it's messed up on a handful of things and it's way off in left field.
+
+Whereas within a workflow, you can put AI in a harness and say, "Hey, mostly I want this thing to be deterministic throughout all these steps, but right here, I need it to summarize something, analyze sentiment, or generate an email." You put the AI part in the spot where it does the thing best, then wrap it back into a deterministic workflow. That has opened up huge usage—we have more than a quarter billion tasks that have run through Zapier with AI like that.
+
+**Have you been surprised by the competitive landscape in AI workflows?**
+
+It did surprise us that we were as well positioned as we were. We had started dabbling with generative AI a few months before ChatGPT came out and saw some customers building workflows on our developer platform. When GPT-4 came out, we were very unsure if workflow was durable. We started to think pure agentic experience was probably going to be the future.
+
+I still believe that will be the future—I just don't think it's going to get there as fast as we initially thought. Over the course of the next year, we kept seeing AI use cases on the traditional workflow builder grow and grow. We realized we need to help people surf the wave—help them go from old school, deterministic workflows and move steadily into purely agentic ones, allowing them to mix and match these experiences along the way.
+
+**How do you think about pricing in an AI world?**
+
+We've always been consumption-based—you pay for tasks. The challenge for horizontal products is that the way folks use the software varies. High usage doesn't necessarily correlate with high value, and low usage doesn't necessarily correlate with low value.
+
+We really want to abstract as much of this away from the customer as possible. We sell predominantly to folks in go-to-market organizations who are not paying attention to the subtle differences between which model is best for coding, writing, or other tasks. So we're trying to abstract away a lot of those choices. We charge you for tasks—doesn't matter if it's an AI task or another task. The math will kind of all work out in the end.
+
+This is where vertical agents have an advantage right now. They can say, "If you're in customer support, we're going to charge you if we close the ticket." You can do direct math: "Today I have a support rep I pay this much money every year to answer this many tickets. If I can turn that into an agent that can answer questions just as well, this is the maximum I'm willing to pay."
+
+**What new markets are opening up with AI?**
+
+What has surprised me is that certain traditional industries have been fairly quick to jump on this. My hypothesis is their use cases are well-suited for AI. If you're working a lot with PDFs and paper documentation, the SaaS stack was tough because it had to be structured, and there wasn't tooling that could turn unstructured data into structured data. However, LLMs are uniquely good at that.
+
+We've also watched media companies be relatively fast at this, which surprised me. They were sometimes faster than certain tech companies. I have to wonder how much of this is because they saw so much disruption in their business model during the internet era that they were like, "We are not going to let that happen to us again." Whereas technology companies have had it pretty cushy, so they're like, "Yeah, we're doing the AI thing, but we're going to take our time."
+
+**What's your take on AI's impact on the job market?**
+
+When I think about this, capitalism is largely undefeated. It's easy for us to spot the disruption—we can see jobs disappearing easier than we can see new opportunities being created. But history tells us there are always new jobs created.
+
+This is what we see in our customer base. I talk to small businesses over and over where they're like, "I never could have hired somebody to do this work. Now because I'm doing it with automation, I'm actually getting more done, generating more revenue, and reinvesting that." When they reinvest, yeah, some goes to AI and more automation, but some goes to people.
+
+There's also this meme that software companies are just going to have crazy high margins now because they don't need that many people. But again, capitalism is undefeated. If someone sees you're generating so much value, they'll come in willing to tolerate less margins. How are you going to compete? You'll invest in advertising, in people. At the end of the day, it nets out where we're all still going to have jobs—but what jobs we do have is going to shift.
+
+**Are you seeing new job categories emerge?**
+
+We're seeing the rise of the AI automation engineer. We have some internally for our enterprise customers, and we're seeing a cottage industry starting to blossom. It's particularly effective when you can combine that skillset with domain expertise. If you have somebody in HR, legal, finance, marketing, or sales who has this capability, they're able to work magic.
+
+This person has existed for all of our 15 years—this is who we've served—but in the last couple of years, they're starting to get more credit inside organizations. They often were the underappreciated person who just kept all the plumbing working. Now they're like, "Yay, automation engineer—I'm making magic happen."
+
+**What's your view on MCP (Model Context Protocol) and how it fits into the landscape?**
+
+MCP is a protocol much like HTTP or REST that focuses on agent-to-agent communication, letting agents talk to each other. Right now there's obviously a lot of hype around it. Whether it's a tailwind or headwind, we're still figuring out.
+
+The most important thing is to get the use cases really dialed in. The place we're seeing it be most effective is in Claude, where folks set up Claude projects, give it access to various tools, and deploy that as an internal tool for their organization.
+
+For example, you might create a sales briefing tool. You set up a project with a template for how you want the brief created, give it access to HubSpot, ZoomInfo, and deep research tools. Now sales reps can say, "Hey, I'm talking to Sam Altman tomorrow. What do we know about our deal with OpenAI?" It does deep research, fetches everything from your internal CRM, and generates a brief so you come in way more prepared.
+
+Those types of internal tools were hard to build in the past. MCP is making it really easy for folks to build chat-style internal tools effectively. But we're very much in the early innings—we haven't seen these new user experience paradigms launched or popularized yet.
